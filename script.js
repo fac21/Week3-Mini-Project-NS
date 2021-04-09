@@ -1,13 +1,13 @@
 //Variables
-
 const holes = document.querySelectorAll(".hole");
 const scoreBoard = document.querySelector(".score");
 const moles = document.querySelectorAll(".mole");
-
-const button = document.querySelector("button");
 let lastHole;
+let timeOut = false;
+console.log(timeOut);
+const button = document.querySelector("button");
 
-//Function Definitions
+//Function Definitions;
 
 //Function to create a random interval for pop up
 function randomTime(min, max) {
@@ -18,17 +18,28 @@ function randomTime(min, max) {
 function randomHole(holes) {
   const index = Math.floor(Math.random() * holes.length);
   const hole = holes[index];
-  //console.log(hole);
   if (hole === lastHole) {
-    //console.log("duplicate!!");
     return randomHole(holes);
   }
   lastHole = hole;
   return hole;
 }
 
+//Moles shows on and off
+function peep() {
+  const time = randomTime(200, 1000);
+  const hole = randomHole(holes);
+  //Show mole
+  hole.classList.add("up");
+
+  //Hide mole
+  setTimeout(() => {
+    hole.classList.remove("up");
+    if (!timeOut) peep();
+  }, time);
+}
+
 function startGame() {}
 
 //Event Handlers
-
 button.addEventListener("click", startGame);
