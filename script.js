@@ -1,11 +1,15 @@
 //Variables
 const holes = document.querySelectorAll(".hole");
 const scoreBoard = document.querySelector(".score");
+const highScoreBoard = document.querySelector(".highScore");
+const highestPoints = localStorage.getItem("highestPoints")
+  ? (highScoreBoard.textContent = localStorage.getItem("highestPoints"))
+  : (highScoreBoard.textContent = 0);
 const moles = document.querySelectorAll(".mole");
+const button = document.querySelector("button");
 let lastHole;
 let timeOut = false;
-console.log(timeOut);
-const button = document.querySelector("button");
+let score;
 
 //Function Definitions;
 
@@ -42,12 +46,28 @@ function peep() {
 //Create Score Board
 function startGame() {
   scoreBoard.textContent = 0;
+  score = 0;
   timeOut = false; //reset the game
   peep();
   setTimeout(() => {
     timeOut = true;
-  }, 2000);
+  }, 20000);
 }
+
+//
+function bonk(event) {
+  console.log(event);
+  if (!event.isTrusted) return;
+  score++;
+  this.classList.remove("up");
+  scoreBoard.textContent = score;
+  if (score > highScoreBoard.textContent) {
+    highScoreBoard.textContent = score;
+    localStorage.setItem("highestPoints", score);
+  }
+}
+
+moles.forEach((mole) => mole.addEventListener("click", bonk));
 
 //Event Handlers
 button.addEventListener("click", startGame);
