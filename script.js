@@ -39,7 +39,15 @@ function peep() {
   }, time);
 }
 
-function startGame() {}
+//Create Score Board
+function startGame() {
+  scoreBoard.textContent = 0;
+  timeOut = false; //reset the game
+  peep();
+  setTimeout(() => {
+    timeOut = true;
+  }, 2000);
+}
 
 //Event Handlers
 button.addEventListener("click", startGame);
