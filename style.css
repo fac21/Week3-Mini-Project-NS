@@ -23,7 +23,18 @@ h1 {
   margin-bottom: 0;
 }
 
-.score {
+.info-panel {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 2rem;
+}
+
+.score,
+.highScore {
   background: rgba(255, 255, 255, 0.2);
   padding: 0 3rem;
   line-height: 1;
@@ -68,4 +79,22 @@ h1 {
 
 .hole.up .mole {
   top: 0;
+}
+
+.start-button {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.5em;
+  font-weight: 700;
+  height: 3.4em;
+  background-color: #3a9416;
+  border-radius: 3.25em;
+  border-style: dotted;
+  border-width: 0.13em;
+  width: 5em;
+  margin-top: 3.5rem;
+}
+
+.start-button:focus {
+  outline: 1px dotted brown;
 }
